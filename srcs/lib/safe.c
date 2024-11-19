@@ -6,7 +6,7 @@ void	*safe_malloc(size_t size)
 
 	ret = malloc(size);
 	if (!ret)
-		err("critical error has occured\n");
+		ft_err("critical error has occured\n");
 	return (ret);
 }
 
@@ -26,5 +26,7 @@ void	safe_mutex_handle(t_mtx *mtx, t_action code)
 	else
 		err("check your code dude you frickde up\n");//debug option maybe take away later
 	if (i != 0)
-		err("there has been a crit error in the threads function\n")
+		err("there has been a crit error in the threads function\n");
 }
+
+

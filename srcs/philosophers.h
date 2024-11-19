@@ -70,6 +70,9 @@ void	init_data(int argc, char **argv);
 void	init_main(int argc, char **argv);
 t_main	*main_call(void);
 
+//safe
+void	safe_mutex_handle(t_mtx *mtx, t_action code);
+void	*safe_malloc(size_t size);
 
 
 

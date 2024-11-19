@@ -8,10 +8,22 @@ t_table	*table_call(void)
 	return (&main);
 }
 
-void	init_main(int argc, char **argv)
+void	init_table(int argc, char **argv)
 {
-	table_call()->data = init_data(argc, argv);
-	table_call()
+	t_table *t;
+	int	i;
+
+	i = -1
+	t = table_call();
+	t->end_simulation = false;
+	t->data = init_data(argc, argv);
+	t->philo = safe_malloc(sizeof(t_philo) * t->data->nmr_philo);
+	t->forks = safe_malloc(sizeof(t_fork) * t->data->nmr_philo);
+	while (++i < t->data->nmr_philo)
+	{
+		safe_mutex_handle(&t->forks[i].fork, INIT);
+		t->forks[i].fork_id = i;
+	}
 }//not done
 
 t_data	*init_data(int argc, char **argv)

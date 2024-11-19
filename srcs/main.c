@@ -5,7 +5,14 @@ int	main(int argc, char **argv)
 {
 	(void)argv;
 	(void)argc;
-/* 	if (argc != 5 && argc != 6)
-		please_call_as_follows();// mi */
-		printf("[%d]\n", ft_atoi(argv[1]));
+	if (argc != 5 && argc != 6)
+		ft_err("please call as follows: ./philosophers blablabla\n");// mi
+	else
+	{
+		//init data
+
+		//start sim
+
+		//clean
+	}
 }

@@ -11,12 +11,6 @@
 # include <stdbool.h>
 # include <limits.h>
 
-typedef enum e_dest
-{
-	TABLE,
-	PHILO,
-}	t_dest;
-
 typedef enum e_action
 {
 	LOCK,
@@ -27,29 +21,14 @@ typedef enum e_action
 	JOIN,
 }	t_action;
 
-typedef enum e_status
-{
-	WAIT,
-	START,
-	STOP,
-	FINIT,
-	LEFT,
-	RIGHT,
-	BOTH,
-}	t_status;
-
-
 typedef struct s_philo
 {
 	int				id;
 	long			last_meal;
 	int				n_meals;
-	t_status		status;
-	struct s_philo	*left;
-	struct s_philo	*right;
-	pthread_t		thr;
-	pthread_mutex_t	fork;
-	pthread_mutex_t	mtx_philo;
+	t_fork			*left_fork;
+	t_fork			*right_fork;
+	pthread_t		thr_id;
 }			t_philo;
 
 typedef struct s_data
@@ -61,16 +40,23 @@ typedef struct s_data
 	int		nmr_meals;
 }		t_data;
 
-typedef struct s_main
+typedef struct s_table
 {
 	// t_fork			*fork_pool;
-	t_status		main_status;
-	long			init_time;
 	t_data			*data;
+	long			init_time;
+	bool			end_simulation;
+	t_fork			*forks;
 	t_philo			*philo;
-	pthread_t		sys_thr;
-	pthread_mutex_t	sys_mutex;
-}	t_main;
+}	t_table;
+
+typedef pthread_mutex_t t_mtx;
+
+typedef struct	s_fork
+{
+	t_mtx	fork;
+	int		fork_id;
+}			t_fork;
 
 
 void	ft_err(char *err_msg);

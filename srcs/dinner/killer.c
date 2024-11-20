@@ -16,7 +16,7 @@ bool	philo_died(t_philo *p)
 	if (get_bool(&p->p_mtx, &p->full))
 		return (false);
 	elapsed = get_time(MILISECOND) - get_long(&p->p_mtx, &p->last_meal);
-	time_to_die = table_call()->data->time_die;
+	time_to_die = table_call()->data->time_to_die;
 	if (elapsed > time_to_die)
 		return (true);
 	return (false);

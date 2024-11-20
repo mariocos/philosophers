@@ -44,16 +44,16 @@ typedef enum e_action
 
 typedef struct s_data
 {
-	long	time_die;
-	long	time_eat;
-	long	time_sleep;
+	long	time_to_die;
+	long	time_to_eat;
+	long	time_to_sleep;
 	int		nmr_philo;
 	int		nmr_meals;
 }		t_data;
 
 typedef struct	s_fork
 {
-	t_mtx	fork;
+	t_mtx	fork_mtx;
 	int		fork_id;
 }			t_fork;
 

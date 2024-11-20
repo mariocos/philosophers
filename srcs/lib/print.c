@@ -5,7 +5,7 @@ void	print_status(t_philo_status code, t_philo *p)
 	long	time;
 
 	time = get_time(MILISECOND) - table_call()->init_time;
-	if (get_bool(&p->p_mtx, &p->full))//thread safe??
+	if (get_bool(&p->p_mtx, &p->full))
 		return ;
 
 	safe_mutex_handle(&table_call()->print_mtx, LOCK);

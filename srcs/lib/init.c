@@ -1,6 +1,5 @@
 #include "../philosophers.h"
 
-//singleton pattern
 t_table	*table_call(void)
 {
 	static t_table	main;
@@ -58,7 +57,7 @@ void	init_table(int argc, char **argv)
 	safe_mutex_handle(&t->print_mtx, INIT);
 	while (++i < t->data->nmr_philo)
 	{
-		safe_mutex_handle(&t->forks[i].fork, INIT);
+		safe_mutex_handle(&t->forks[i].fork_mtx, INIT);
 		t->forks[i].fork_id = i;
 	}
 	philo_init();
@@ -72,9 +71,9 @@ t_data	*init_data(int argc, char **argv)
 
 	new = (t_data *)safe_malloc(sizeof(t_data));
 	new->nmr_philo = ft_atoi(argv[1]);
-	new->time_die = ft_atoi(argv[2]);
-	new->time_eat = ft_atoi(argv[3]) * 1e3;
-	new->time_sleep = ft_atoi(argv[4]) * 1e3;
+	new->time_to_die = ft_atoi(argv[2]);
+	new->time_to_eat = ft_atoi(argv[3]) * 1e3;
+	new->time_to_sleep = ft_atoi(argv[4]) * 1e3;
 	if (argc == 6)
 		new->nmr_meals = ft_atoi(argv[5]);
 	else

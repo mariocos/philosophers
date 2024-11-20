@@ -20,7 +20,7 @@ SRCS = $(SRC_PATH)/errors/error.c \
 OBJ = $(SRCS:$(SRC_PATH)/%.c=$(OBJ_DIR)/%.o)
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g #-pthread -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra -g -pthread -fsanitize=thread
 
 all: $(NAME)
 

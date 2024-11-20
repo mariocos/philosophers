@@ -1,5 +1,13 @@
 #include "../philosophers.h"
 
+bool	sim_finished(void)
+{
+	t_table	*t;
+
+	t = table_call();
+	return (get_bool(&t->table_mtx, &t->end_simulation));
+}
+
 void	dinner_start(void)
 {
 	t_table	*t;
@@ -38,11 +46,11 @@ void	*dinner_simulation(void *data)
 
 	while (!sim_finished())
 	{
-		if (p->full)
+		if (get_bool(&p->p_mtx, &p->full))
 			break;
 		eat(p);
 		print_status(SLEEPING, p);
-		good_sleep(table_call()->data->time_sleep);
+		good_sleep(get_long(&table_call()->table_mtx, &table_call()->data->time_to_sleep));
 		think(p);
 	}
 	return (NULL);

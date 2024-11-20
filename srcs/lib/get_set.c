@@ -42,12 +42,3 @@ long	get_long(t_mtx *mtx, long *dest)
 	safe_mutex_handle(mtx, UNLOCK);
 	return (ret);
 }
-
-bool	sim_finished(void)// if (sim_finished()) works now
-{
-	t_table	*t;
-
-	t = table_call();
-	return (get_bool(&t->table_mtx, &t->end_simulation));
-}
-

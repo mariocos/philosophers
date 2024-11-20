@@ -25,7 +25,7 @@ void	safe_mutex_handle(t_mtx *mtx, t_action code)
 	else if (code == DESTROY)
 		i = pthread_mutex_destroy(mtx);
 	else
-		ft_err("check your code dude you frickde up\n");//debug option maybe take away later
+		ft_err("check your code dude you frickde up\n");
 	if (i != 0)
 		ft_err("there has been a crit error in the threads function\n");
 }
@@ -45,7 +45,6 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_a
 		ft_err("check your code dude your passing a wrong thing in safe thread handle\n");
 	if (i != 0)
 		ft_err("a critical threads error has occurred\n");
-
 }
 
 void	free_all(void)

@@ -10,20 +10,20 @@ void	dinner_start(void)
 	if (t->data->nmr_meals == 0)
 		return ;
 	else if (t->data->nmr_philo <= 1)
-		safe_thread_handle(&t->philo[0].thr_id, lonely_philo, &t->philo[0], CREATE);//maybe change
-	else//create threds
+		safe_thread_handle(&t->philo[0].thr_id, lonely_philo, &t->philo[0], CREATE);
+	else
 	{
 		while (++i < t->data->nmr_philo)
 		{
 			safe_thread_handle(&t->philo[i].thr_id, dinner_simulation, &t->philo[i], CREATE);
 		}
 	}
-	//launch death checker
-	safe_thread_handle(&t->killer, set_killer_loose, table_call(), CREATE);//not getting joined
+	safe_thread_handle(&t->killer, set_killer_loose, table_call(), CREATE);
 	t->init_time = get_time(MILISECOND);
 	set_bool(&t->table_mtx, &t->ready_to_start, true);
+	safe_thread_handle(&t->killer, NULL, NULL, JOIN);
 	i = -1;
-	while (++i < t->data->nmr_philo)//bit unsure
+	while (++i < t->data->nmr_philo)
 		safe_thread_handle(&t->philo[i].thr_id, NULL, NULL, JOIN);
 }
 

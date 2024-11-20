@@ -7,6 +7,6 @@ void	ft_err(char *err_msg)
 	i = -1;
 	while (err_msg[++i])
 		write(1, &err_msg[i], 1);
-//	free_all();//missing imp
+	free_all();
 	exit(1);
 }

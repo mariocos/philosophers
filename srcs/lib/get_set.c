@@ -25,6 +25,14 @@ void	set_long(t_mtx *mtx, long *dest, long value)
 	safe_mutex_handle(mtx, UNLOCK);
 }
 
+void	increment_long(t_mtx *mtx, long *dest)
+{
+	safe_mutex_handle(mtx, LOCK);
+	*dest = *dest + 1;
+	safe_mutex_handle(mtx, UNLOCK);
+}
+
+
 long	get_long(t_mtx *mtx, long *dest)
 {
 	long	ret;
@@ -42,3 +50,4 @@ bool	sim_finished(void)// if (sim_finished()) works now
 	t = table_call();
 	return (get_bool(&t->table_mtx, &t->end_simulation));
 }
+

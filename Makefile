@@ -12,6 +12,7 @@ SRCS = $(SRC_PATH)/errors/error.c \
 	   $(SRC_PATH)/lib/safe.c \
 	   $(SRC_PATH)/dinner/dinner.c \
 	   $(SRC_PATH)/dinner/dinner_utils.c \
+	   $(SRC_PATH)/dinner/killer.c \
 	   $(SRC_PATH)/main.c \
 
 

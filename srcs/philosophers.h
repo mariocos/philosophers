@@ -64,8 +64,8 @@ typedef struct s_philo
 	int				n_meals;
 	bool			full;
 	t_mtx			p_mtx;
-	t_fork			*left_fork;
-	t_fork			*right_fork;
+	t_fork			*first_fork;
+	t_fork			*scnd_fork;
 	pthread_t		thr_id;
 }			t_philo;
 
@@ -74,12 +74,14 @@ typedef struct s_table
 	// t_fork			*fork_pool;
 	t_data			*data;
 	long			init_time;
+	long			threads_running;
 	bool			end_simulation;
 	bool			ready_to_start;
 	t_fork			*forks;
 	t_philo			*philo;
 	t_mtx			table_mtx;
 	t_mtx			print_mtx;
+	pthread_t		killer;
 }	t_table;
 
 
@@ -103,6 +105,8 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_a
 bool	sim_finished(void);
 long	get_long(t_mtx *mtx, long *dest);
 void	set_long(t_mtx *mtx, long *dest, long value);
+void	increment_long(t_mtx *mtx, long *dest);
+
 bool	get_bool(t_mtx *mtx, bool *dest);
 void	set_bool(t_mtx *mtx, bool *dest, bool value);
 
@@ -120,6 +124,12 @@ void	dinner_start(void);
 void	wait_all_threads(void);
 void	eat(t_philo *p);
 void	think(t_philo *p);
+void	*lonely_philo(void *data);
+
+//killer 
+void	*set_killer_loose(void	*data);
+bool	philo_died(t_philo *p);
+void	ready_to_hunt(void);
 
 
 

@@ -6,6 +6,12 @@ OBJ_DIR = ./objs
 SRCS = $(SRC_PATH)/errors/error.c \
 	   $(SRC_PATH)/lib/lib.c \
 	   $(SRC_PATH)/lib/init.c \
+	   $(SRC_PATH)/lib/get_set.c \
+	   $(SRC_PATH)/lib/print.c \
+	   $(SRC_PATH)/lib/time.c \
+	   $(SRC_PATH)/lib/safe.c \
+	   $(SRC_PATH)/dinner/dinner.c \
+	   $(SRC_PATH)/dinner/dinner_utils.c \
 	   $(SRC_PATH)/main.c \
 
 

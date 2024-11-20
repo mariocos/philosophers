@@ -86,6 +86,7 @@ typedef struct s_table
 
 
 void	ft_err(char *err_msg);
+void	free_all(void);
 
 // lib
 int	ft_atoi(const char *str);

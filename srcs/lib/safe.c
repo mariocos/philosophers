@@ -47,3 +47,14 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_a
 		ft_err("a critical threads error has occurred\n");
 
 }
+
+void	free_all(void)
+{
+	t_table	*t;
+
+	t = table_call();
+	if (t->philo)
+		free(t->philo);
+	if (t->forks)
+		free(t->forks);
+}

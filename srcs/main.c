@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
 	{
 		init_table(argc, argv);
 		dinner_start();
-
-		//clean
+		free_all();
+		exit(0);
 	}
 }

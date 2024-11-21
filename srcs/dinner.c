@@ -5,6 +5,7 @@
 	t_philo	*p;
 
 	p = (t_philo *)data;
+	set_long(&p->table->table_mtx, &p->table->init_time, get_time(MILISECOND));
 	set_long(&p->p_mtx, &p->last_meal_time, get_time(MILISECOND));
 	print_status(TAKE_FIRST_FORK, p);
 	while (!sim_finished(p->table))

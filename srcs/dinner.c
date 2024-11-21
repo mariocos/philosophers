@@ -17,6 +17,7 @@ void	*dinner_simulation(void *data)
 	t_philo	*p;
 
 	p = (t_philo *)data;
+	set_long(&p->table->table_mtx, &p->table->init_time, get_time(MILISECOND));
 	set_long(&p->p_mtx, &p->last_meal_time, get_time(MILISECOND));
 	while (!sim_finished(p->table))
 	{
@@ -44,9 +45,7 @@ void	dinner_start(t_table *t)
 		while (++i < t->data->nmr_philo)
 			safe_thread_handle(&t->philo[i].thr_id, dinner_simulation, &t->philo[i], CREATE);
 	}
-	set_long(&t->table_mtx, &t->init_time, get_time(MILISECOND));//problem here
 	safe_thread_handle(&t->killer, set_killer_loose, t, CREATE);
-	set_long(&t->table_mtx, &t->init_time, get_time(MILISECOND));
 	i = -1;
 	while (++i < get_long(&t->table_mtx, &t->data->nmr_philo))
 		safe_thread_handle(&t->philo[i].thr_id, NULL, NULL, JOIN);

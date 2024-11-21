@@ -99,7 +99,7 @@ void	increment_long(t_mtx *mtx, long *dest);
 
 //dinner
 void	eat(t_philo *p);
-void	think(t_philo *p);
+void	think(t_philo *p, bool flag);
 void	dinner_start(t_table *t);
 
 

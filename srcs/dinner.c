@@ -26,7 +26,7 @@ void	*dinner_simulation(void *data)
 		eat(p);
 		print_status(SLEEPING, p);
 		good_sleep(get_long(&p->table->table_mtx, &p->table->data->time_to_sleep), p->table);
-		think(p);
+		think(p, true);
 	}
 	return (NULL);
 }

@@ -8,12 +8,15 @@ void	think(t_philo *p, bool flag)
 
 	if (flag)
 		print_status(THINKING, p);
-	t_sleep = p->table->data->time_to_sleep;
-	t_eat = p->table->data->time_to_eat;
-	t_think = t_eat * 2 -t_sleep;
-	if (t_think < 0)
-		t_think = 0;
-	good_sleep(t_think * 0.42, p->table);
+	if (p->table->data->nmr_philo % 2 == 1)
+	{
+		t_sleep = p->table->data->time_to_sleep;
+		t_eat = p->table->data->time_to_eat;
+		t_think = t_eat * 2 -t_sleep;
+		if (t_think < 0)
+			t_think = 0;
+		good_sleep(t_think * 0.42, p->table);
+	}
 }
 
 void	eat(t_philo *p)

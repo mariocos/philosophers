@@ -1,5 +1,9 @@
-#include "../philosophers.h"
+#include "philosophers.h"
 
+bool	sim_finished(t_table *t)
+{
+	return (get_bool(&t->table_mtx, &t->end_simulation));
+}
 
 void	set_bool(t_mtx *mtx, bool *dest, bool value)
 {

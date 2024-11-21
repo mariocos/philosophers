@@ -1,4 +1,4 @@
-#include "../philosophers.h"
+#include "philosophers.h"
 
 long	get_time(t_time_code code)
 {
@@ -16,16 +16,17 @@ long	get_time(t_time_code code)
 	return (-1);
 }
 
-void	good_sleep(long usec)
+void	good_sleep(long usec, t_table *t)
 {
 	long	start;
 	long	elapsed;
 	long	remaining;
+	(void)t;
 
 	start = get_time(MICROSECOND);
 	while (get_time(MICROSECOND) - start < usec)
 	{
-		if (sim_finished())
+		if (sim_finished(t))
 			break;
 		elapsed = get_time(MICROSECOND) - start;
 		remaining = usec - elapsed;

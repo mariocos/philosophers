@@ -1,4 +1,4 @@
-#include "../philosophers.h"
+#include "philosophers.h"
 
 int	ft_isdigit(int c)
 {

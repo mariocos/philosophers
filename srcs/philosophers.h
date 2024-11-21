@@ -47,8 +47,8 @@ typedef struct s_data
 	long	time_to_die;
 	long	time_to_eat;
 	long	time_to_sleep;
-	int		nmr_philo;
-	int		nmr_meals;
+	long		nmr_philo;
+	long		max_meals;
 }		t_data;
 
 typedef struct	s_fork
@@ -59,19 +59,19 @@ typedef struct	s_fork
 
 typedef struct s_philo
 {
-	int				id;
-	long			last_meal;
-	int				n_meals;
-	bool			full;
+	int				philo_id;
+	long			last_meal_time;
+	long				n_meals;
+	bool			is_full;
 	t_mtx			p_mtx;
 	t_fork			*first_fork;
 	t_fork			*scnd_fork;
+	struct s_table	*table;
 	pthread_t		thr_id;
 }			t_philo;
 
 typedef struct s_table
 {
-	// t_fork			*fork_pool;
 	t_data			*data;
 	long			init_time;
 	long			threads_running;
@@ -84,53 +84,49 @@ typedef struct s_table
 	pthread_t		killer;
 }	t_table;
 
-
-void	ft_err(char *err_msg);
-void	free_all(void);
-
-// lib
-int	ft_atoi(const char *str);
-int	ft_isdigit(int c);
-
-//init
-t_data	*init_data(int argc, char **argv);
-void	init_table(int argc, char **argv);
-t_table	*table_call(void);
-
-//safe
-void	safe_mutex_handle(t_mtx *mtx, t_action code);
-void	*safe_malloc(size_t size);
-void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_action code);
+//time
+long	get_time(t_time_code code);
+void	good_sleep(long usec, t_table *t);
 
 //get_set GO!
-bool	sim_finished(void);
+bool	sim_finished(t_table *t);
+bool	get_bool(t_mtx *mtx, bool *dest);
+void	set_bool(t_mtx *mtx, bool *dest, bool value);
+
 long	get_long(t_mtx *mtx, long *dest);
 void	set_long(t_mtx *mtx, long *dest, long value);
 void	increment_long(t_mtx *mtx, long *dest);
 
-bool	get_bool(t_mtx *mtx, bool *dest);
-void	set_bool(t_mtx *mtx, bool *dest, bool value);
-
-//time 
-long	get_time(t_time_code code);
-void	good_sleep(long usec);
-
-
-//status
-void	print_status(t_philo_status code, t_philo *p);
-
 //dinner
-void	*dinner_simulation(void *data);
-void	dinner_start(void);
-void	wait_all_threads(void);
 void	eat(t_philo *p);
 void	think(t_philo *p);
-void	*lonely_philo(void *data);
+void	dinner_start(t_table *t);
 
-//killer 
+
+//print
+void	print_status(t_philo_status code, t_philo *p);
+
+//init
+void	init_table(int argc, char **argv, t_table *t);
+t_data	*init_data(int argc, char **argv);
+void	philo_init(t_table *t);
+void	assign_forks(t_philo *p, t_fork *forks, int	i);
+
+//safe
+void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_action code);
+void	safe_mutex_handle(t_mtx *mtx, t_action code);
+void	*safe_malloc(size_t size);
+
+//lib
+int	ft_atoi(const char *str);
+
+//err
+void	ft_err(char *err_msg);
+void	clean(t_table *t);
+
+
+//the killer
 void	*set_killer_loose(void	*data);
-bool	philo_died(t_philo *p);
-void	ready_to_hunt(void);
 
 
 

@@ -3,16 +3,16 @@ NAME = philo
 SRC_PATH = ./srcs
 OBJ_DIR = ./objs
 
-SRCS = $(SRC_PATH)/errors/error.c \
-	   $(SRC_PATH)/lib/lib.c \
-	   $(SRC_PATH)/lib/init.c \
-	   $(SRC_PATH)/lib/get_set.c \
-	   $(SRC_PATH)/lib/print.c \
-	   $(SRC_PATH)/lib/time.c \
-	   $(SRC_PATH)/lib/safe.c \
-	   $(SRC_PATH)/dinner/dinner.c \
-	   $(SRC_PATH)/dinner/dinner_utils.c \
-	   $(SRC_PATH)/dinner/killer.c \
+SRCS = $(SRC_PATH)/init.c \
+	   $(SRC_PATH)/get_set.c \
+	   $(SRC_PATH)/print.c \
+	   $(SRC_PATH)/time.c \
+	   $(SRC_PATH)/safe.c \
+	   $(SRC_PATH)/dinner.c \
+	   $(SRC_PATH)/dinner_utils.c \
+	   $(SRC_PATH)/lib.c \
+	   $(SRC_PATH)/error.c \
+	   $(SRC_PATH)/killer.c \
 	   $(SRC_PATH)/main.c \
 
 
@@ -20,7 +20,7 @@ SRCS = $(SRC_PATH)/errors/error.c \
 OBJ = $(SRCS:$(SRC_PATH)/%.c=$(OBJ_DIR)/%.o)
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -pthread -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra -g -pthread #-fsanitize=thread
 
 all: $(NAME)
 

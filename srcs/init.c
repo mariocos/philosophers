@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 14:21:31 by mariocos          #+#    #+#             */
+/*   Updated: 2024/11/23 14:22:42 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
-void	assign_forks(t_philo *p, t_fork *forks, int	i)
+void	assign_forks(t_philo *p, t_fork *forks, int i)
 {
 	int	philo_nbr;
 
@@ -17,7 +29,7 @@ void	assign_forks(t_philo *p, t_fork *forks, int	i)
 void	philo_init(t_table *t)
 {
 	t_philo	*p;
-	int	i;
+	int		i;
 
 	i = -1;
 	while (++i < t->data->nmr_philo)
@@ -28,8 +40,6 @@ void	philo_init(t_table *t)
 		p->n_meals = 0;
 		p->table = t;
 		assign_forks(p, t->forks, i);
-
-//		safe_mutex_handle(&p->p_mtx, INIT);
 	}
 }
 
@@ -54,8 +64,6 @@ void	init_table(int argc, char **argv, t_table *t)
 
 t_data	*init_data(int argc, char **argv)
 {
-	(void)argv;
-	(void)argc;
 	t_data	*new;
 
 	new = (t_data *)safe_malloc(sizeof(t_data));

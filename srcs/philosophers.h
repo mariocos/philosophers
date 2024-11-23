@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 14:36:25 by mariocos          #+#    #+#             */
+/*   Updated: 2024/11/23 14:42:02 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
-
 
 # include <pthread.h>
 # include <stdio.h>
@@ -11,7 +22,7 @@
 # include <stdbool.h>
 # include <limits.h>
 
-typedef pthread_mutex_t t_mtx;
+typedef pthread_mutex_t	t_mtx;
 
 typedef enum e_philo_status
 {
@@ -23,7 +34,7 @@ typedef enum e_philo_status
 	DIED,
 }		t_philo_status;
 
-typedef enum	e_time_code
+typedef enum e_time_code
 {
 	SECOND,
 	MILISECOND,
@@ -41,17 +52,16 @@ typedef enum e_action
 	DETACH,
 }	t_action;
 
-
 typedef struct s_data
 {
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
+	long		time_to_die;
+	long		time_to_eat;
+	long		time_to_sleep;
 	long		nmr_philo;
 	long		max_meals;
 }		t_data;
 
-typedef struct	s_fork
+typedef struct s_fork
 {
 	t_mtx	fork_mtx;
 	int		fork_id;
@@ -61,7 +71,7 @@ typedef struct s_philo
 {
 	int				philo_id;
 	long			last_meal_time;
-	long				n_meals;
+	long			n_meals;
 	bool			is_full;
 	t_mtx			p_mtx;
 	t_fork			*first_fork;
@@ -102,7 +112,6 @@ void	eat(t_philo *p);
 void	think(t_philo *p, bool flag);
 void	dinner_start(t_table *t);
 
-
 //print
 void	print_status(t_philo_status code, t_philo *p);
 
@@ -110,24 +119,21 @@ void	print_status(t_philo_status code, t_philo *p);
 void	init_table(int argc, char **argv, t_table *t);
 t_data	*init_data(int argc, char **argv);
 void	philo_init(t_table *t);
-void	assign_forks(t_philo *p, t_fork *forks, int	i);
+void	assign_forks(t_philo *p, t_fork *forks, int i);
 
 //safe
-void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_action code);
+void	safe_thread_handle(pthread_t *thread,
+			void *(*foo)(void *), void *data, t_action code);
 void	safe_mutex_handle(t_mtx *mtx, t_action code);
 void	*safe_malloc(size_t size);
 
 //lib
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 
 //err
 void	ft_err(char *err_msg);
 void	clean(t_table *t);
 
-
 //the killer
 void	*set_killer_loose(void	*data);
-
-
-
 #endif

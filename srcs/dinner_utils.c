@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dinner_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 14:13:34 by mariocos          #+#    #+#             */
+/*   Updated: 2024/11/23 14:17:32 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 void	think(t_philo *p, bool flag)
@@ -12,7 +24,7 @@ void	think(t_philo *p, bool flag)
 	{
 		t_sleep = p->table->data->time_to_sleep;
 		t_eat = p->table->data->time_to_eat;
-		t_think = t_eat * 2 -t_sleep;
+		t_think = t_eat * 2 - t_sleep;
 		if (t_think < 0)
 			t_think = 0;
 		good_sleep(t_think * 0.42, p->table);
@@ -29,7 +41,8 @@ void	eat(t_philo *p)
 	increment_long(&p->p_mtx, &p->n_meals);
 	print_status(EATING, p);
 	good_sleep(p->table->data->time_to_eat, p->table);
-	if (p->table->data->max_meals > 0 && p->n_meals == p->table->data->max_meals)
+	if (p->table->data->max_meals > 0
+		&& p->n_meals == p->table->data->max_meals)
 		set_bool(&p->p_mtx, &p->is_full, true);
 	safe_mutex_handle(&p->first_fork->fork_mtx, UNLOCK);
 	safe_mutex_handle(&p->scnd_fork->fork_mtx, UNLOCK);

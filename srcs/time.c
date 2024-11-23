@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   time.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 14:32:13 by mariocos          #+#    #+#             */
+/*   Updated: 2024/11/23 14:34:16 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 long	get_time(t_time_code code)
 {
 	struct timeval	tv;
+
 	if (-1 == gettimeofday(&tv, NULL))
 		ft_err("a critical error has occurerd getting time\n");
 	if (code == SECOND)
@@ -21,18 +34,19 @@ void	good_sleep(long usec, t_table *t)
 	long	start;
 	long	elapsed;
 	long	remaining;
-	(void)t;
 
+	(void)t;
 	start = get_time(MICROSECOND);
 	while (get_time(MICROSECOND) - start < usec)
 	{
 		if (sim_finished(t))
-			break;
+			break ;
 		elapsed = get_time(MICROSECOND) - start;
 		remaining = usec - elapsed;
 		if (remaining > 1e3)
 			usleep(usec / 2);
 		else
-			while (get_time(MICROSECOND) - start < usec);
+			while (get_time(MICROSECOND) - start < usec)
+				;
 	}
 }

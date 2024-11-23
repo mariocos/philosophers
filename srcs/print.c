@@ -1,15 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 14:25:48 by mariocos          #+#    #+#             */
+/*   Updated: 2024/11/23 14:30:58 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 void	print_status(t_philo_status code, t_philo *p)
 {
 	long	time;
 
-	time = get_time(MILISECOND) - get_long(&p->table->table_mtx, &p->table->init_time);
+	time = get_time(MILISECOND) - get_long(&p->table->table_mtx,
+			&p->table->init_time);
 	if (get_bool(&p->p_mtx, &p->is_full))
 		return ;
-
 	safe_mutex_handle(&p->table->print_mtx, LOCK);
-	if ((code == TAKE_FIRST_FORK || code == TAKE_SECOND_FORK) && !sim_finished(p->table))
+	if ((code == TAKE_FIRST_FORK || code == TAKE_SECOND_FORK)
+		&& !sim_finished(p->table))
 		printf("%-6ld philosopher %d has taken a fork\n", time, p->philo_id);
 	else if (code == EATING && !sim_finished(p->table))
 		printf("%-6ld philosopher %d is eating\n", time, p->philo_id);

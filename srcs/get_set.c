@@ -1,9 +1,16 @@
-#include "philosophers.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_set.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 14:20:27 by mariocos          #+#    #+#             */
+/*   Updated: 2024/11/23 14:20:51 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-bool	sim_finished(t_table *t)
-{
-	return (get_bool(&t->table_mtx, &t->end_simulation));
-}
+#include "philosophers.h"
 
 void	set_bool(t_mtx *mtx, bool *dest, bool value)
 {
@@ -35,7 +42,6 @@ void	increment_long(t_mtx *mtx, long *dest)
 	*dest = *dest + 1;
 	safe_mutex_handle(mtx, UNLOCK);
 }
-
 
 long	get_long(t_mtx *mtx, long *dest)
 {

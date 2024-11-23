@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   killer.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 14:23:09 by mariocos          #+#    #+#             */
+/*   Updated: 2024/11/23 14:23:44 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 bool	philo_died(t_philo *p)
@@ -17,11 +29,10 @@ bool	philo_died(t_philo *p)
 void	*set_killer_loose(void	*data)
 {
 	t_table	*t;
-	int	i;
+	int		i;
 
 	t = (t_table *)data;
-//	ready_to_hunt();
-	while(!sim_finished(t))
+	while (!sim_finished(t))
 	{
 		i = -1;
 		while (++i < t->data->nmr_philo)

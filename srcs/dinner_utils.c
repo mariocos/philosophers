@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 14:13:34 by mariocos          #+#    #+#             */
-/*   Updated: 2024/11/23 14:17:32 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:47:17 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	think(t_philo *p, bool flag)
 
 void	eat(t_philo *p)
 {
+	if (philo_died(p))
+		return ;
 	safe_mutex_handle(&p->first_fork->fork_mtx, LOCK);
 	print_status(TAKE_FIRST_FORK, p);
 	safe_mutex_handle(&p->scnd_fork->fork_mtx, LOCK);

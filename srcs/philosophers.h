@@ -6,7 +6,7 @@
 /*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 14:36:25 by mariocos          #+#    #+#             */
-/*   Updated: 2024/11/23 14:42:02 by mariocos         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:46:20 by mariocos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,4 +136,5 @@ void	clean(t_table *t);
 
 //the killer
 void	*set_killer_loose(void	*data);
+bool	philo_died(t_philo *p);
 #endif
